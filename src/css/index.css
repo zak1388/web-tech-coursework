@@ -1,31 +1,75 @@
 body {
+    display: grid;
     grid-template-areas:
         "header header header nav nav"
-        "main main main main aside"
-        "main main main main aside"
+        "main main main main asides"
+        "main main main main asides"
         "footer footer footer footer footer";
-    width: 100%;
-}
+    width: auto;
+    min-height: 100vh;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, auto);
 
-header {
-    grid-area: "header";
-}
-
-nav {
-    grid-area: "nav";
+    background-color: var(--page-background-color);
+    color: var(--page-text-color);
 }
 
 main {
-    grid-area: "article";
+    display: flex;
+    flex-direction: column;
+
+    margin-right: 0;
+}
+
+main > section > p, main > section > figure {
+    margin-left: 1em;
+}
+
+main > section li {
+    margin-left: 2em;
+}
+
+main > #education-qualifications > #education-timeline {
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 0.5em;
+}
+
+main > #education-qualifications > #qualification-lists {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+main > #education-qualifications > #qualification-lists > div {
+    flex-grow: 0;
+    flex-basis: 20em;
+
+    margin: 0.5em;
+    padding: 0.5em;
+
+    border: 0.01em solid black;
+    border-radius: 1em;
+
+    background-color: var(--page-background-color);
+    color: var(--page-text-color);
+}
+
+aside {
+    margin-right: 1em;
+
+    background-color: var(--aside-background-color);
+    color: var(--aside-text-color);
+}
+
+#asides {
+    grid-area: asides;
+
     display: flex;
     flex-direction: column;
 }
 
-
-aside {
-    grid-area: "aside";
+#asides > * {
+    margin: 1em 0;
 }
 
-footer {
-    grid-area: "footer";
-}

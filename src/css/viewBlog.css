@@ -1,0 +1,39 @@
+body {
+    display: grid;
+    grid-template-areas:
+        "header header header nav nav"
+        "main main main main main"
+        "main main main main main"
+        "footer footer footer footer footer";
+    width: auto;
+    min-height: 100vh;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto 1fr 1fr auto;
+
+    background-color: var(--page-background-color);
+    color: var(--page-text-color);
+}
+
+.blog-article {
+    padding: 1em;
+    margin: 0 4em;
+    background-color: var(--aside-background-color);
+    color: var(--aside-text-color);
+    border-top: 0.1em solid black;
+    border-bottom: 0.1em solid black;
+}
+
+.blog-article > time {
+    float: right;
+    color: lightgray;
+}
+
+.blog-article:first-of-type {
+    margin-top: 1em;
+    border-top: 0;
+}
+
+.blog-article:last-of-type {
+    margin-bottom: 1em;
+    border-bottom: 0;
+}

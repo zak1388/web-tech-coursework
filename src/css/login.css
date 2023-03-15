@@ -1,0 +1,59 @@
+body {
+    display: grid;
+    grid-template-areas:
+        "header header header nav nav"
+        "main main main main main"
+        "main main main main main"
+        "footer footer footer footer footer";
+    width: auto;
+    min-height: 100vh;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto 1fr 1fr auto;
+
+    background-color: var(--page-background-color);
+    color: var(--page-text-color);
+}
+
+main form fieldset {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 20em;
+    margin: 1em auto;
+
+    background-color: var(--aside-background-color);
+    color: var(--aside-text-color);
+}
+
+fieldset h1 {
+    margin: auto;
+    color: white;
+}
+
+form p {
+    --margin-size: 1rem;
+    --padding-size: 0.5rem;
+
+    margin: var(--margin-size);
+    padding: var(--padding-size);
+}
+
+form input, form textarea {
+    box-sizing: content-box;
+    padding: var(--padding-size);
+    width: calc(100% - var(--padding-size));
+    height: calc(100% - var(--padding-size));
+}
+
+form textarea {
+    font-size: 16px;
+    resize: none;
+}
+
+form input[type="submit"] {
+    --padding-size: 0.5em 1em;
+
+    width: fit-content;
+    padding: var(--padding-size);
+    margin: auto;
+}
