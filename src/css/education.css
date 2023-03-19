@@ -1,0 +1,28 @@
+#education-qualifications th {
+    border-bottom: 0.1em solid black;
+    font-size: calc(0.6 * var(--title-font-size));
+}
+
+#education-qualifications table {
+    width: 100%;
+}
+
+#education-qualifications > #qualification-lists {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#education-qualifications > #qualification-lists > div {
+    flex-grow: 1;
+    flex-basis: 20em;
+
+    margin: 0.5em;
+    padding: 0.5em;
+
+    border: 0.01em solid black;
+    border-radius: 1em;
+
+    background-color: var(--page-background-color);
+    color: var(--page-text-color);
+}

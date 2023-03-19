@@ -39,85 +39,11 @@
             </figure>
         </section>
 
-        <section id="education-qualifications">
-            <h2>Education</h2>
-
-            <div id="education-timeline">
-                <p>2016 &mdash;</p>
-                <p>GCSE - Greenshaw High School</p>
-
-                <p>2020</p>
-                <br>
-
-                <p>2020 &mdash;</p>
-                <p>A-Level - Highworth Grammer School</p>
-
-                <p>2022</p>
-                <br>
-
-                <p>2022 &mdash;</p>
-                <p>Bachelor of Science - Queen Mary's University of London</p>
-
-                <p>current</p>
-                <br>
-            </div>
-
-            <h2>Qualifications</h2>
-
-            <div id="qualification-lists">
-                <div>
-                    <h3>Degree</h3>
-                    <ul>
-                        <li>In progress - BSc Computer Science</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3>A-levels</h3>
-                    <ul>
-                        <li>A* - Maths</li>
-                        <li>A* - Physics</li>
-                        <li>A - Further Maths</li>
-                        <li>A - Computer Science</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3>GCSEs</h3>
-                    <ul>
-                        <li>9 - Chemistry</li>
-                        <li>9 - Maths</li>
-                        <li>8 - Physics</li>
-                        <li>8 - Biology</li>
-                        <li>8 - Economics</li>
-                        <li>8 - Geography</li>
-                    </ul>
-                    </div>
-            </div>
-        </section>
-
         <section id="experience">
             <h2>My experience</h2>
             <p>While I have no formal experience in software development, that does not mean I have no experience full stop.</p>
-            <p>You can see projects I've made or worked on <a href="#portfolio">at my portfolio</a>.</p>
+            <p>You can see projects I've made or worked on <a href="my_works.html">here</a>.</p>
             <p>And you too can help me in this by giving me a job 😁</p>
-        </section>
-
-        <section id="portfolio">
-            <h2>Some examples of my work</h2>
-            <ul>
-                <li><a href="https://github.com/zak1388">My github</a></li>
-                <li><a href="https://github.com/Team-RoBlocks/RoBlocks-game">The RoBlocks Project</a></li>
-                <li><a href="https://github.qmul.ac.uk/ec22617">My university github</a></li>
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>You can contact me at:</h2>
-            <ul>
-                <li>my email: <a href="mailto:zakariyyakadri@gmail.com">zakariyyakadri@gmail.com</a></li>
-                <li>my uni email: <a href="mailto:z.kadri@se22.qmul.ac.uk">z.kadri@se22.qmul.ac.uk</a></li>
-            </ul>
         </section>
     </main>
 
