@@ -1,19 +1,18 @@
+/* change how the fieldset displays, make sure its flex etc */
 main form fieldset {
     display: flex;
     flex-direction: column;
 
-    margin: 1em;
     min-height: 30em;
-
-    background-color: var(--aside-background-color);
-    color: var(--aside-text-color);
 }
 
+/* Centre the h1 element, and make it white */
 fieldset h1 {
     margin: auto;
     color: white;
 }
 
+/* make sure each of the paragraphs have some apdding and margin */
 form p {
     --margin-size: 1rem;
     --padding-size: 0.5rem;

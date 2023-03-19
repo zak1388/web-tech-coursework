@@ -113,6 +113,15 @@ main {
     color: var(--main-text-color);
 }
 
+main form {
+    max-width: 40em;
+    margin: 1em auto;
+
+    background-color: var(--aside-background-color);
+    color: var(--aside-text-color);
+}
+
+/* define the footer styling */
 footer {
     grid-area: footer;
 
