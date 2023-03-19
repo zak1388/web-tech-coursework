@@ -21,6 +21,7 @@ form p {
     padding: var(--padding-size);
 }
 
+/* make sure both the imputs and the text areas have the same padding and margin */
 form input, form textarea {
     box-sizing: content-box;
     padding: var(--padding-size);
@@ -28,20 +29,14 @@ form input, form textarea {
     height: calc(100% - var(--padding-size));
 }
 
+/* by defualt the text area in the form has smaller font, reset it and make sure you can resize it */
 form textarea {
     font-size: 16px;
     resize: none;
 }
 
+/* for the submit and clear buttons make sure to recalculate their width and margin so they fit nice */
 form input[type="submit"], form input[type="reset"] {
     width: calc(50% - var(--padding-size) - var(--margin-size));
     margin: 0 var(--margin-size);
-}
-
-.flex {
-    display: flex;
-}
-
-.grow {
-    flex-grow: 1;
 }

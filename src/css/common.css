@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu+Mono&display=swap');
 
+/* global variables, including title sizes and colors */
 :root {
     --title-font-size: 2em;
 
@@ -23,10 +24,12 @@
     --footer-text-color: white;
 }
 
+/* set all the fonts to be google's roboto or if unavailable than any sans-serif font */
 * {
     font-family: "Roboto", sans-serif;
 }
 
+/* set h1, h2, and h3 font sizes and families */
 h1 {
     font-size: var(--title-font-size);
     font-family: "Ubuntu Mono", monospace;
@@ -42,6 +45,7 @@ h3 {
     font-size: calc(var(--title-font-size) * 0.66);
 }
 
+/* set some of the defaults for all the pages, such as the default grid styling for the body */
 body {
     display: grid;
     grid-template-areas:
@@ -57,6 +61,7 @@ body {
     color: var(--page-text-color);
 }
 
+/* then the default header styling */
 header {
     grid-area: header;
 
@@ -67,10 +72,12 @@ header {
     color: var(--header-text-color);
 }
 
+/* before the headers children were all too close to the left side, this makes the spacing much better */
 header > * {
     margin-left: 1rem;
 }
 
+/* set the nav styling, and make sure its not too close to the right */
 nav {
     grid-area: nav;
 
@@ -82,14 +89,17 @@ nav {
     color: var(--nav-text-color);
 }
 
+/* anchor tags have their own colours, so we change this in the header */
 nav a, nav a:visited {
     color: var(--nav-text-color);
 }
 
+/* fun new hover colour */
 nav a:hover {
     color: var(--nav-link-color);
 }
 
+/* set the nav ul to be a flex element with no list styling, it also has width and height 100% so that everything can be nice and centered */
 nav > ul {
     list-style: none;
 
@@ -100,12 +110,14 @@ nav > ul {
     height: 100%;
 }
 
+/* allow the list elments in the nav to grow, this lets them space themselves much nicer, and then center them and give them some space with margin */
 nav > ul > li {
     flex-grow: 1;
     align-self: center;
-    margin: 0;
+    margin: 0.25em 2em;
 }
 
+/* define the main element's styling, mainly just color and a bit of margin */ 
 main {
     grid-area: main;
     margin: 0 1em;
@@ -132,18 +144,36 @@ footer {
     color: var(--footer-text-color);
 }
 
+/* styling for list elements now they have been reset */
 li {
     margin: 0 0 0 1em;
 }
 
+/* stylign for divs, sectiosn, and articles, because they need a little space */
 section, div, article {
     margin: 1em;
 }
 
+/* set the aside colours */
+aside {
+    background-color: var(--aside-background-color);
+    color: var(--aside-text-color);
+}
+
+/* couple classes to have a bit of reusability */
 .center-text {
     text-align: center;
 }
 
+.flex {
+    display: flex;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+/* imgs should be too big, unless theyre explicitly allowed to be elsewhere */
 img {
     max-height: 400px;
 }

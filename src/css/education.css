@@ -1,18 +1,22 @@
+/* give the timeline an actual line */
 #education-qualifications th {
     border-bottom: 0.1em solid black;
     font-size: calc(0.6 * var(--title-font-size));
 }
 
+/* let the table properly span the full space */
 #education-qualifications table {
     width: 100%;
 }
 
+/* set the list of qualifications to display and let it wrap */
 #education-qualifications > #qualification-lists {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 
+/* for the div elemnents in the qualifications, let them grow to fill the space, have the same basis, then give them spacing and a border */
 #education-qualifications > #qualification-lists > div {
     flex-grow: 1;
     flex-basis: 20em;

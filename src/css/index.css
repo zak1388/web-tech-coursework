@@ -1,3 +1,4 @@
+/* the index page has a bit of different grid areas as it has some asides */
 body {
     grid-template-areas:
         "header header header nav nav"
@@ -5,6 +6,7 @@ body {
         "footer footer footer footer footer";
 }
 
+/* main displays as flex in a column with no right margin */
 main {
     display: flex;
     flex-direction: column;
@@ -12,21 +14,22 @@ main {
     margin-right: 0;
 }
 
-main > section > p, main > section > figure {
+/* for paragraphs and figures in the main section, give them some extra left margin so they arent right up against the edge */
+main p, main  figure {
     margin-left: 1em;
 }
 
+/* for list elements in the main sections, make sure they have extra spacing so theyre easier to spot */
 main > section li {
     margin-left: 2em;
 }
 
+/* asides are on the right on this page, so give them some right margin so theyre not up against the right side of the screen, and their colours */
 aside {
     margin-right: 1em;
-
-    background-color: var(--aside-background-color);
-    color: var(--aside-text-color);
 }
 
+/* give the asides their grid area and tell them to display as flex in a column */
 #asides {
     grid-area: asides;
 
@@ -34,6 +37,7 @@ aside {
     flex-direction: column;
 }
 
+/* give all the asides children a margin of 1em top and bottom */
 #asides > * {
     margin: 1em 0;
 }

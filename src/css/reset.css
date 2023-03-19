@@ -1,3 +1,4 @@
+/* reset all elements */
 html, body, h1, h2, h3, figure, p, section, a, ul, ol, li, header, nav, img, sup, hr, footer, head, title, input, legend, textarea {
     margin: 0;
     padding: 0;

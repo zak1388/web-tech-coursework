@@ -1,13 +1,16 @@
+/* set the fieldset to display flex in column */
 main form fieldset {
     display: flex;
     flex-direction: column;
 }
 
+/* center the h1 and set the color to white */
 fieldset h1 {
     margin: auto;
     color: white;
 }
 
+/* set the paragraphs in the form to fill the width */
 form p {
     --margin-size: 1rem;
     --padding-size: 0.5rem;
@@ -16,6 +19,7 @@ form p {
     padding: var(--padding-size);
 }
 
+/* set the input and the text area to be a content box and also have the same width and padding */
 form input, form textarea {
     box-sizing: content-box;
     padding: var(--padding-size);
@@ -23,11 +27,13 @@ form input, form textarea {
     height: calc(100% - var(--padding-size));
 }
 
+/* reset the textarea font size (its different by default) and make it non-resizable */
 form textarea {
     font-size: 16px;
     resize: none;
 }
 
+/* for the submit button, give it padding and center it, as well as give it the right size */
 form input[type="submit"] {
     --padding-size: 0.5em 1em;
 
