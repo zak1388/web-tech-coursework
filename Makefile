@@ -1,4 +1,6 @@
 php-runtime=php
+PORT=8000
 
 run:
-	$(php-runtime) -S localhost:8000 -t $(shell realpath src)
+	open "localhost:$(PORT)"
+	$(php-runtime) -S localhost:$(PORT) -t $(shell realpath src)
