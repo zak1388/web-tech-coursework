@@ -1,17 +1,8 @@
 body {
-    display: grid;
     grid-template-areas:
         "header header header nav nav"
         "main main main main asides"
-        "main main main main asides"
         "footer footer footer footer footer";
-    width: auto;
-    min-height: 100vh;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, auto);
-
-    background-color: var(--page-background-color);
-    color: var(--page-text-color);
 }
 
 main {
@@ -27,32 +18,6 @@ main > section > p, main > section > figure {
 
 main > section li {
     margin-left: 2em;
-}
-
-main > #education-qualifications > #education-timeline {
-    display: grid;
-    grid-template-columns: max-content auto;
-    column-gap: 0.5em;
-}
-
-main > #education-qualifications > #qualification-lists {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-main > #education-qualifications > #qualification-lists > div {
-    flex-grow: 0;
-    flex-basis: 20em;
-
-    margin: 0.5em;
-    padding: 0.5em;
-
-    border: 0.01em solid black;
-    border-radius: 1em;
-
-    background-color: var(--page-background-color);
-    color: var(--page-text-color);
 }
 
 aside {
