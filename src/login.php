@@ -18,7 +18,7 @@
     <?php include 'nav.php' ?>
 
     <main>
-        <form method="POST" action="./login.php">
+        <form method="POST" action="./login_script.php">
             <fieldset>
                 <h1>Login</h1>
                 <p>

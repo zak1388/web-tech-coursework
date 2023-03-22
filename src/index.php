@@ -31,7 +31,7 @@
         <section id="experience">
             <h2>My experience</h2>
             <p>While I have no formal experience in software development, that does not mean I have no experience full stop.</p>
-            <p>You can see projects I've made or worked on <a href="my_works.phtml">here</a>.</p>
+            <p>You can see projects I've made or worked on <a href="my_works.php">here</a>.</p>
             <p>And you too can help me in this by giving me a job 😁</p>
         </section>
     </main>
