@@ -40,3 +40,37 @@ form input[type="submit"], form input[type="reset"] {
     width: calc(50% - var(--padding-size) - var(--margin-size));
     margin: 0 var(--margin-size);
 }
+
+#confirm-clear {
+    --width: 10em;
+    --height: 5em;
+    --padding: 1em;
+
+    width: var(--width);
+    height: var(--height);
+    text-align: center;
+    padding: 1em;
+
+    position: fixed;
+    margin: auto;
+    top: calc(50% - ((var(--height) + var(--padding)) / 2));
+    left: calc(50% - ((var(--width) + var(--padding)) / 2));
+
+    border: 0.1em solid black;
+}
+
+#confirm-clear button {
+    flex-basis: 1em;
+    flex-grow: 1;
+    margin: 0 0.1em;
+}
+
+#confirm-clear-parent {
+    display: none;
+
+    margin: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(100, 100, 100, 0.5);
+}

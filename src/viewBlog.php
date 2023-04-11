@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/viewBlog.css">
-    <!-- <script src=""> -->
+    <script src="js/viewBlog.js" defer></script>
 </head>
 
 <body>
@@ -17,9 +18,13 @@
     </header>
     <?php include 'nav.php' ?>
 
-    <main>
-        <!-- TODO: php magic to welcome user on login -->
+    <div class="onSignIn">
+        <p>Welcome <?php $_SESSION["username"] ?></p>
+        <br>
+        <button id="hideOnSignIn">Ok</button>
+    </div>
 
+    <main>
         <!-- TODO: probably some php stuff to get the blogs to show as each article ig -->
         <article class="blog-article">
             <time datetime="2023-3-10">2023 March 10</time>

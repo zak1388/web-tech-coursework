@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/addEntry.css">
-    <!-- <script src=""> -->
+    <script src="js/addEntry.js" defer></script>
 </head>
 
 <body>
@@ -35,6 +36,16 @@
             </fieldset>
         </form>
     </main>
+
+    <div id="confirm-clear-parent">
+        <aside id="confirm-clear">
+            <p> Are you sure you want to clear? </p>
+            <div class="flex">
+                <button id="confirm-clear-cancel">Cancel</button>
+                <button id="confirm-clear-accept">Ok</button>
+            </div>
+        </aside>
+    </div>
 
     <?php include 'footer.php'; ?>
 </body>

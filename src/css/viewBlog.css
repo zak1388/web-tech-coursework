@@ -25,3 +25,17 @@
     margin-bottom: 1em;
     border-bottom: 0;
 }
+
+.onSignIn {
+    display: none;
+    position: fixed;
+
+    background-color: rgba(100, 100, 100, 0.5);
+    width: 100vw;
+    height: 100vh;
+}
+
+.onSignIn > * {
+    text-align: center;
+    margin: 0 0.1em;
+}

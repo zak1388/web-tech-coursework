@@ -7,7 +7,9 @@
     <title>Zakariyya Kadri's Portfolio</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index_mobile.css" media="screen and (max-width: 768px)">
     <!-- <script src=""> -->
 </head>
 
