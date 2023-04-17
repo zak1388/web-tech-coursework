@@ -1,0 +1,13 @@
+body {
+    grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "asides"
+        "footer";
+    grid-template-rows: max-content max-content auto max-content max-content
+}
+
+main {
+    margin: 0 1em;
+}
