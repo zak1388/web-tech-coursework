@@ -26,7 +26,7 @@
     border-bottom: 0;
 }
 
-.onSignInBackground {
+.dialog-background {
     display: none;
     position: fixed;
 
@@ -35,7 +35,7 @@
     height: 100vh;
 }
 
-.onSignIn {
+.dialog {
     background-color: var(--main-background-color);
     margin: auto;
     padding: 1em;
@@ -47,7 +47,7 @@
     width: fit-content;
 }
 
-.onSignIn > * {
+.dialog > * {
     display: block;
     margin: auto;
 }

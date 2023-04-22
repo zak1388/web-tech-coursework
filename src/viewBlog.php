@@ -18,14 +18,23 @@
         <h1>Zakariyya Kadri</h1>
         <p>A blog</p>
     </header>
+
     <?php include 'nav.php' ?>
 
-    <div class="onSignInBackground">
-        <div class="onSignIn">
+    <div class="dialog-background" id="onSignInBackground">
+        <div class="dialog">
             <p>Welcome <?php echo $_SESSION["username"]; ?></p>
             <button id="hideOnSignIn">Ok</button>
         </div>
     </div>
+
+    <div class="dialog-background" id="onSignOutBackground">
+        <div class="dialog">
+            <p>Signed out successfully</p>
+            <button id="hideOnSignOut">Ok</button>
+        </div>
+    </div>
+
 
     <main>
         <!-- TODO: probably some php stuff to get the blogs to show as each article ig -->
