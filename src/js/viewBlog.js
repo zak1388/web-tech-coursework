@@ -1,24 +1,20 @@
-document.querySelector("#hideOnSignIn").addEventListener('click', hideOnSignIn);
-document.querySelector("#hideOnSignOut").addEventListener('click', hideOnSignOut);
+document.querySelector("#hideOnSignIn").addEventListener('click', () => hideDialog("#onSignInBackground"));
+document.querySelector("#hideOnSignOut").addEventListener('click', () => hideDialog("#onSignOutBackground"));
+document.querySelector("#hideOnAlreadySignedIn").addEventListener('click', () => hideDialog("#onAlreadySignedInBackground"));
 
 if (window.location.hash === "#signedIn") {
-    onSignIn();
+    showDialog("#onSignInBackground");
 } else if (window.location.hash === "#signedOut") {
-    onSignOut();
+    showDialog("#onSignOutBackground");
+} else if (window.location.hash === "#alreadySignedIn") {
+    showDialog("#onAlreadySignedInBackground");
 }
 
-function onSignIn() {
-    document.querySelector("#onSignInBackground").style.display = "block";
+function showDialog(dialogToShow) {
+    document.querySelector(dialogToShow).style.display = "block";
+
 }
 
-function onSignOut() {
-    document.querySelector("#onSignOutBackground").style.display = "block";
-}
-
-function hideOnSignIn() {
-    document.querySelector("#onSignInBackground").style.display = "none";
-}
-
-function hideOnSignOut() {
-    document.querySelector("#onSignOutBackground").style.display = "none";
+function hideDialog(dialogToShow) {
+    document.querySelector(dialogToShow).style.display = "none";
 }
