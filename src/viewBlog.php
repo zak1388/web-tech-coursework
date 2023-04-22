@@ -35,6 +35,12 @@
         </div>
     </div>
 
+    <div class="dialog-background" id="onAlreadySignedInBackground">
+        <div class="dialog">
+            <p>You're already signed in!</p>
+            <button id="hideOnAlreadySignedIn">Ok</button>
+        </div>
+    </div>
 
     <main>
         <!-- TODO: probably some php stuff to get the blogs to show as each article ig -->

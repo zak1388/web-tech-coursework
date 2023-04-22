@@ -1,3 +1,12 @@
+<?php 
+session_start(); 
+
+if (!is_null($_SESSION) && !is_null($_SESSION["uid"])) {
+    // user is already signed in
+    header("Location: ".$_SERVER["SERVER_ADDR"]."/viewBlog.php#alreadySignedIn");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
