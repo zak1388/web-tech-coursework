@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- <link rel="stylesheet" href=""> -->
-    <!-- <script src=""> -->
-</head>
+session_start();
+$_SESSION = array();
 
-<body>
-</body>
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), "", time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+    );
+}
 
-</html>
+session_destroy();
 
+?>
