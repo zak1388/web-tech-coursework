@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $mysqli = new mysqli("127.0.0.1", "417coursework", "passwd", "courseworkdb");
+    $mysqli = new mysqli("127.0.0.1", "417coursework", "coursework", "courseworkdb");
 
 
     $stmt = $mysqli->prepare("SELECT UserID FROM Users WHERE Username=(?) AND Password=(?)");
