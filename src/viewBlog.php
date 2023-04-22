@@ -22,8 +22,7 @@
 
     <div class="onSignInBackground">
         <div class="onSignIn">
-            <p>Welcome <?php $_SESSION["username"] ?></p>
-            <br>
+            <p>Welcome <?php echo $_SESSION["username"]; ?></p>
             <button id="hideOnSignIn">Ok</button>
         </div>
     </div>
