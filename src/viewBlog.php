@@ -20,10 +20,12 @@
     </header>
     <?php include 'nav.php' ?>
 
-    <div class="onSignIn">
-        <p>Welcome <?php $_SESSION["username"] ?></p>
-        <br>
-        <button id="hideOnSignIn">Ok</button>
+    <div class="onSignInBackground">
+        <div class="onSignIn">
+            <p>Welcome <?php $_SESSION["username"] ?></p>
+            <br>
+            <button id="hideOnSignIn">Ok</button>
+        </div>
     </div>
 
     <main>

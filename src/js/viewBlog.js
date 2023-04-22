@@ -1,13 +1,13 @@
-document.querySelector("#hideOnSignIn").onClick = hideOnSignIn;
+document.querySelector("#hideOnSignIn").addEventListener('click', hideOnSignIn);
 
 if (window.location.hash === "#signedIn") {
     onSignIn();
 }
 
 function onSignIn() {
-    document.querySelector(".onSignIn").style.display = "flex";
+    document.querySelector(".onSignInBackground").style.display = "block";
 }
 
 function hideOnSignIn() {
-    document.querySelector(".onSignIn").style.display = "none";
+    document.querySelector(".onSignInBackground").style.display = "none";
 }

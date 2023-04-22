@@ -26,7 +26,7 @@
     border-bottom: 0;
 }
 
-.onSignIn {
+.onSignInBackground {
     display: none;
     position: fixed;
 
@@ -35,7 +35,19 @@
     height: 100vh;
 }
 
+.onSignIn {
+    background-color: var(--main-background-color);
+    margin: auto;
+    padding: 1em;
+    border-radius: 0.5em;
+
+    font-size: var(--title-font-size);
+    
+    height: fit-content;
+    width: fit-content;
+}
+
 .onSignIn > * {
-    text-align: center;
-    margin: 0 0.1em;
+    display: block;
+    margin: auto;
 }
