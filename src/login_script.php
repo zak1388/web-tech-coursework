@@ -24,6 +24,9 @@ try {
 } catch (Exception $exception) {
     echo ($exception);
     die();
+} finally {
+    $stmt->close();
+    $mysqli->close();
 }
 
 ?>
