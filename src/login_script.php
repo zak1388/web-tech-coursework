@@ -8,14 +8,20 @@ try {
     $stmt->execute();
     $results = $stmt->get_result();
 
+
     if (!$results) {
-        echo "Incorrect username/password";
+        echo "Error: getting results failed";
         die();
     }
 
     session_start();
 
     $row = $results->fetch_array();
+    if (is_null($row)) {
+        header("Location: ".$_SERVER["SERVER_ADDR"]."/login.php#failed");
+        die();
+    }
+
     $_SESSION["uid"] = $row["UserID"];
     $_SESSION["username"] = $_POST["email"];
 
