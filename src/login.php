@@ -17,7 +17,8 @@ if (!is_null($_SESSION) && !is_null($_SESSION["uid"])) {
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/login.css">
-    <!-- <script src=""> -->
+    <script src="js/dialog.js" defer></script>
+    <script src="js/login.js" defer></script>
 </head>
 
 <body>
