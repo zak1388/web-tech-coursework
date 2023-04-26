@@ -1,3 +1,7 @@
+const form = document.querySelector("form");
+const form_title = form.querySelector("input[name=\"title\"]");
+const form_body = form.querySelector("textarea[name=\"body\"]");
+
 document.querySelector("input[type=\"reset\"]").addEventListener("click", showConfirmClear);
 document.querySelector("#confirm-clear-cancel").addEventListener("click", hideConfirmClear);
 document.querySelector("#confirm-clear-accept").addEventListener("click", () => {
@@ -8,12 +12,16 @@ document.querySelector("input[type=\"submit\"]").addEventListener("click", (clic
         if (formFieldsEmpty()) {
             click_event.preventDefault();
         }
+        else if (bodyTooLong()) {
+            click_event.preventDefault();
+            showDialog("The body of your post is too long (" + form_body.value.length + "), it must be at most 255");
+        }
 });
 
-const form = document.querySelector("form");
-const form_title = form.querySelector("input[name=\"title\"]");
-const form_body = form.querySelector("textarea[name=\"body\"]");
 
+function bodyTooLong() {
+    return form_body.value.length > 255;
+}
 
 function formFieldsEmpty() {
     let return_value = false;

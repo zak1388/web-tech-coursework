@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    if (is_null($_SESSION["uid"])) {
+        header("Location: ".$_SERVER[""]."/viewBlog.php#notSignedIn");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +15,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/addEntry.css">
+    <script src="js/dialog.js" defer></script>
     <script src="js/addEntry.js" defer></script>
 </head>
 
