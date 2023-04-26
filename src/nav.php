@@ -12,11 +12,12 @@ if (is_null($_SESSION)) {
             <?php
                 if (!is_null($_SESSION["uid"])) {
                     echo "<li><a href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a href=\"addEntry.php\">Add blog entry</a></li>";
                 } else {
                     echo "<li><a href=\"login.php\">Login</a></li>";
                 }
             ?>
-            <li><a href="addEntry.php">Add blog entry</a></li>
+
             <li><a href="my_works.php">Projects</a></li>
         </ul>
     </nav>
