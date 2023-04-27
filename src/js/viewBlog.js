@@ -17,6 +17,8 @@ if (window.location.hash === "#signedIn") {
     showDialog("Posted successfully!");
 } else if (window.location.hash === "#notSignedIn") {
     showDialog("You need to be signed in to do that");
+} else if (window.location.hash === "#insufficientPermission") {
+    showDialog("You don't have permission to do that!");
 }
 
 function getPosts() {
