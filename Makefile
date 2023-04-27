@@ -9,5 +9,8 @@ run:
 zip:
 	$(shell cd src/; zip -r ../zkadri-phase$(PHASE) .)
 
+dumpmysql:
+	mysqldump -u root -p courseworkdb > database-dump.sql
+
 clean:
 	rm zkadri-phase*.zip
