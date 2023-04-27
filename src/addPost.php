@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (is_null($_SESSION["uid"])) {
+    header("Location: ".$_SERVER["SERVER_ADDR"]."/viewBlog.php#notSignedIn");
+    die();
+} else if ($_SESSION["username"] !== "zakariyyakadri@gmail.com") {
+    header("Location: ".$_SERVER["SERVER_ADDR"]."/viewBlog.php#insufficientPermission");
+    die();
+}
 
 $date = date("Y-m-d H:i:s");
 $title = $_POST["title"];

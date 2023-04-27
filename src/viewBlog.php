@@ -32,6 +32,12 @@
 
     <main>
         <!-- posts go here, theyre articles with the class 'blog-article' and with a time, h2 and a p element -->
+        <span>
+            <label for="month-selector">Select month to view: </label>
+            <select id="month-selector">
+                <option value="all" default>All</option>
+            </select>
+        </span>
     </main>
 
     <?php include 'footer.php' ?>

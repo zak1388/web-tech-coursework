@@ -1,7 +1,7 @@
 /* have blog articles with some padding, and margin, as well as colours and a border */
 .blog-article {
     padding: 1em;
-    margin: 0 4em;
+    margin: 0 4rem;
     background-color: var(--aside-background-color);
     color: var(--aside-text-color);
     border-top: 0.1em solid black;
@@ -24,4 +24,25 @@
 .blog-article:last-of-type {
     margin-bottom: 1em;
     border-bottom: 0;
+}
+
+.month > h2 {
+    margin-left: 4rem;
+}
+
+.month button:first-of-type {
+    margin-left: 0;
+}
+
+.month  button {
+    margin: 0.5em 0.5em;
+}
+
+.month button:last-of-type {
+    margin-right: 0;
+}
+
+main > span {
+    float: right;
+    margin: 1rem 4rem;
 }

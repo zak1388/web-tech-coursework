@@ -25,7 +25,7 @@ try {
     $_SESSION["uid"] = $row["UserID"];
     $_SESSION["username"] = $_POST["email"];
 
-    header("Location: ".$_SERVER["SERVER_ADDR"]."/viewBlog.php#signedIn");
+    header("Location: ".$_SERVER["SERVER_ADDR"]."/addEntry.php#signedIn");
 
 } catch (Exception $exception) {
     echo ($exception);

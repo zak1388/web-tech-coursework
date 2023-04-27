@@ -51,6 +51,9 @@
                     <input type="submit" value="Post">
                     <input type="reset" value="Clear">
                 </p>
+                <p class="flex">
+                    <button id="previewButton">Preview?</button>
+                </p>
             </fieldset>
         </form>
     </main>
