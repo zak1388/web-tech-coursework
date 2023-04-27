@@ -29,7 +29,7 @@ CREATE TABLE `ForumPosts` (
   `Body` varchar(255) NOT NULL,
   PRIMARY KEY (`PostID`),
   UNIQUE KEY `PostID_UNIQUE` (`PostID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `ForumPosts` (
 
 LOCK TABLES `ForumPosts` WRITE;
 /*!40000 ALTER TABLE `ForumPosts` DISABLE KEYS */;
-INSERT INTO `ForumPosts` VALUES (2,'2023-04-25 22:23:39','Blog','The blog is coming along nicely, we can do posts and all.'),(3,'2023-04-27 09:06:56','Wait can we html','I was wondering if, because of the way i set this up, <b>poorly</b>, I could use html tags here'),(4,'2023-04-27 09:07:57','Text Nodes','ah because i used text nodes to create the posts in javascript, this means they cant contain html tags, so good on me i suppose ');
+INSERT INTO `ForumPosts` VALUES (2,'2023-04-25 22:23:39','Blog','The blog is coming along nicely, we can do posts and all.'),(3,'2023-04-27 09:06:56','Wait can we html','I was wondering if, because of the way i set this up, <b>poorly</b>, I could use html tags here'),(4,'2023-04-27 09:07:57','Text Nodes','ah because i used text nodes to create the posts in javascript, this means they cant contain html tags, so good on me i suppose '),(5,'1970-02-27 16:33:06','I\'m a time-traveller','No seriously, look at when this post is dated, the only way I could\'ve done that is travelling back in time'),(17,'2023-04-27 20:45:01','Previews and passing information around','Wow, this isnt going to matter at all to anyone but me, but i recently implemented previews and using GET requests on forms to pass the information around, OH LORD THAT WAS A LOT OF EFFORT. Well its done now 🥳');
 /*!40000 ALTER TABLE `ForumPosts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-27 15:52:38
+-- Dump completed on 2023-04-27 20:50:26
