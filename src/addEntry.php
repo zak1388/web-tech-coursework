@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/common_mobile.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="css/addEntry.css">
+    <script>
+        const USERNAME = "<?php 
+                        if (is_null($_SESSION))
+                            echo ""; 
+                        else
+                            echo $_SESSION["username"];
+                    ?>";
+    </script>
     <script src="js/dialog.js" defer></script>
     <script src="js/addEntry.js" defer></script>
 </head>
