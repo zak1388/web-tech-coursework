@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Documents/uni-notes/ECS417U/coursework/src/js/viewBlog.js.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="javascript">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Statement { color: #ffff00; }
+.Type { color: #87ffaf; }
+.Special { color: #ffd7d7; }
+.Comment { color: #00ffff; }
+.Constant { color: #ff40ff; }
+.Identifier { color: #00ffff; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">document</span>.getElementById(<span class="Constant">&quot;month-selector&quot;</span>).addEventListener(<span class="Constant">&quot;change&quot;</span>, updateVisibleMonths);
+
+<span class="Comment">// populate posts</span>
+populatePosts();
+
+<span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#signedOut&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;Signed out successfully.&quot;</span>);
+<span class="Identifier">}</span> <span class="Statement">else</span> <span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#postSuccessful&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;Posted successfully!&quot;</span>);
+<span class="Identifier">}</span> <span class="Statement">else</span> <span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#notSignedIn&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;You need to be signed in to do that&quot;</span>);
+<span class="Identifier">}</span> <span class="Statement">else</span> <span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#insufficientPermission&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;You don't have permission to do that!&quot;</span>);
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> updateVisibleMonths(changeEvent) <span class="Identifier">{</span>
+    <span class="Identifier">[</span>...<span class="Statement">document</span>.getElementsByClassName(<span class="Constant">&quot;month&quot;</span>)<span class="Identifier">]</span>.forEach((monthDiv) =&gt; <span class="Identifier">{</span>
+            <span class="Statement">if</span> (changeEvent.srcElement.value === <span class="Constant">&quot;all&quot;</span>)
+                monthDiv.style.display = <span class="Constant">&quot;block&quot;</span>;
+            <span class="Statement">else</span> <span class="Statement">if</span> (changeEvent.srcElement.value === monthDiv.id)
+                monthDiv.style.display = <span class="Constant">&quot;block&quot;</span>;
+            <span class="Statement">else</span>
+                monthDiv.style.display = <span class="Constant">&quot;none&quot;</span>;
+    <span class="Identifier">}</span>);
+    <span class="Comment">// console.log(changeEvent.srcElement.value);</span>
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> getPosts() <span class="Identifier">{</span>
+    <span class="Statement">return</span> fetch(<span class="Statement">window</span>.<span class="Statement">location</span>.origin + <span class="Constant">&quot;/getPosts.php&quot;</span>);
+<span class="Identifier">}</span>
+
+<span class="Statement">const</span> MONTHS = <span class="Identifier">{</span>
+    0: <span class="Constant">&quot;January&quot;</span>,
+    1: <span class="Constant">&quot;Febuary&quot;</span>,
+    2: <span class="Constant">&quot;March&quot;</span>,
+    3: <span class="Constant">&quot;April&quot;</span>,
+    4: <span class="Constant">&quot;May&quot;</span>,
+    5: <span class="Constant">&quot;June&quot;</span>,
+    6: <span class="Constant">&quot;July&quot;</span>,
+    7: <span class="Constant">&quot;August&quot;</span>,
+    8: <span class="Constant">&quot;September&quot;</span>,
+    9: <span class="Constant">&quot;October&quot;</span>,
+    10: <span class="Constant">&quot;November&quot;</span>,
+    11: <span class="Constant">&quot;December&quot;</span>,
+<span class="Identifier">}</span>;
+
+<span class="Identifier">function</span> doPreview() <span class="Identifier">{</span>
+    <span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.search.includes(<span class="Constant">&quot;body=&quot;</span>) || <span class="Statement">window</span>.<span class="Statement">location</span>.search.includes(<span class="Constant">&quot;title=&quot;</span>)) <span class="Identifier">{</span>
+        <span class="Statement">const</span> params = <span class="Statement">new</span> URLSearchParams(<span class="Statement">window</span>.<span class="Statement">location</span>.search);
+        <span class="Statement">const</span> title = params.get(<span class="Constant">&quot;title&quot;</span>);
+        <span class="Statement">const</span> body = params.get(<span class="Constant">&quot;body&quot;</span>);
+        <span class="Statement">const</span> date = <span class="Statement">new</span> <span class="Type">Date</span>();
+
+        <span class="Statement">const</span> dtf = <span class="Statement">new</span> Intl.DateTimeFormat(<span class="Constant">&quot;en-GB&quot;</span>, <span class="Identifier">{</span>
+                <span class="Constant">&quot;year&quot;</span>: <span class="Constant">&quot;numeric&quot;</span>,
+                <span class="Constant">&quot;month&quot;</span>: <span class="Constant">&quot;2-digit&quot;</span>,
+                <span class="Constant">&quot;day&quot;</span>: <span class="Constant">&quot;2-digit&quot;</span>,
+                <span class="Constant">&quot;hour&quot;</span>: <span class="Constant">&quot;2-digit&quot;</span>,
+                <span class="Constant">&quot;minute&quot;</span>: <span class="Constant">&quot;2-digit&quot;</span>,
+                <span class="Constant">&quot;second&quot;</span>: <span class="Constant">&quot;2-digit&quot;</span>,
+        <span class="Identifier">}</span>);
+        <span class="Statement">const</span> post = createPost(title, body, dtf.format(date).replaceAll(<span class="Constant">&quot;/&quot;</span>, <span class="Constant">&quot;-&quot;</span>).replace(<span class="Constant">&quot;,&quot;</span>, <span class="Constant">&quot;&quot;</span>));
+
+        <span class="Statement">const</span> previewDiv = createMonthDiv(<span class="Constant">&quot;Preview&quot;</span>, <span class="Constant">&quot;post&quot;</span>);
+        previewDiv.appendChild(post);
+
+
+        <span class="Identifier">function</span> createShadowForm() <span class="Identifier">{</span>
+                <span class="Statement">const</span> form = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;form&quot;</span>);
+
+                <span class="Statement">const</span> form_title = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;input&quot;</span>);
+                form_title.setAttribute(<span class="Constant">&quot;name&quot;</span>, <span class="Constant">&quot;title&quot;</span>);
+                form_title.value = title;
+                form.appendChild(form_title);
+
+                <span class="Statement">const</span> form_body = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;input&quot;</span>);
+                form_body.setAttribute(<span class="Constant">&quot;name&quot;</span>, <span class="Constant">&quot;body&quot;</span>);
+                form_body.value = body;
+                form.appendChild(form_body);
+
+                <span class="Statement">document</span>.body.appendChild(form);
+
+                <span class="Statement">return</span> form;
+        <span class="Identifier">}</span>
+
+        <span class="Statement">const</span> postButton = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;button&quot;</span>);
+        postButton.appendChild(<span class="Statement">document</span>.createTextNode(<span class="Constant">&quot;Post&quot;</span>));
+        postButton.addEventListener(<span class="Constant">&quot;click&quot;</span>, () =&gt; <span class="Identifier">{</span>
+                <span class="Statement">const</span> form = createShadowForm();
+                form.setAttribute(<span class="Constant">&quot;action&quot;</span>, <span class="Constant">&quot;/addPost.php&quot;</span>);
+                form.setAttribute(<span class="Constant">&quot;method&quot;</span>, <span class="Constant">&quot;POST&quot;</span>);
+                form.submit();
+        <span class="Identifier">}</span>);
+
+        <span class="Statement">const</span> editButton = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;button&quot;</span>);
+        editButton.appendChild(<span class="Statement">document</span>.createTextNode(<span class="Constant">&quot;Edit&quot;</span>));
+        editButton.addEventListener(<span class="Constant">&quot;click&quot;</span>, () =&gt; <span class="Identifier">{</span>
+                <span class="Statement">const</span> form = createShadowForm();
+                form.setAttribute(<span class="Constant">&quot;action&quot;</span>, <span class="Constant">&quot;/addEntry.php&quot;</span>);
+                form.setAttribute(<span class="Constant">&quot;method&quot;</span>, <span class="Constant">&quot;GET&quot;</span>);
+                form.submit();
+        <span class="Identifier">}</span>);
+
+        post.appendChild(postButton);
+        post.appendChild(editButton);
+    <span class="Identifier">}</span>
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> populatePosts() <span class="Identifier">{</span>
+    doPreview();
+
+    getPosts().then((response) =&gt; response.json())
+    .then((posts) =&gt; <span class="Identifier">{</span>
+        <span class="Identifier">let</span> month = -1;
+        <span class="Identifier">let</span> year = 0;
+        <span class="Identifier">let</span> monthDiv = <span class="Statement">null</span>;
+
+        <span class="Statement">for</span> (<span class="Statement">const</span> post of posts) <span class="Identifier">{</span>
+            <span class="Statement">const</span> date = <span class="Statement">new</span> <span class="Type">Date</span>(post.<span class="Type">Date</span>);
+            <span class="Statement">if</span> (date.getMonth() !== month || date.getFullYear() !== year) <span class="Identifier">{</span>
+                month = date.getMonth();
+                year = date.getFullYear();
+                monthDiv = createMonthDiv(month, year);
+            <span class="Identifier">}</span>
+
+            monthDiv.appendChild(createPost(post.Title, post.Body, post.<span class="Type">Date</span>));
+        <span class="Identifier">}</span>
+
+
+
+    <span class="Identifier">}</span>);
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> createMonthDiv(month, year) <span class="Identifier">{</span>
+    <span class="Identifier">let</span> monthDiv = <span class="Statement">document</span>.getElementById(<span class="Constant">`</span><span class="Special">${month}</span><span class="Constant">-</span><span class="Special">${year}</span><span class="Constant">`</span>);
+
+    <span class="Statement">if</span> (monthDiv !== <span class="Statement">null</span>) <span class="Identifier">{</span>
+        <span class="Statement">return</span> monthDiv;
+    <span class="Identifier">}</span>
+
+    monthDiv = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;div&quot;</span>);
+    monthDiv.setAttribute(<span class="Constant">&quot;id&quot;</span>, <span class="Constant">`</span><span class="Special">${month}</span><span class="Constant">-</span><span class="Special">${year}</span><span class="Constant">`</span>);
+    monthDiv.className = <span class="Constant">&quot;month&quot;</span>;
+    <span class="Statement">document</span>.getElementsByTagName(<span class="Constant">&quot;main&quot;</span>)<span class="Identifier">[</span>0<span class="Identifier">]</span>.appendChild(monthDiv);
+
+    <span class="Statement">const</span> header = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;h2&quot;</span>);
+    <span class="Identifier">let</span> monthYearString = (<span class="Statement">typeof</span>(month) == <span class="Constant">&quot;number&quot;</span>)? MONTHS<span class="Identifier">[</span>month<span class="Identifier">]</span> : month;
+    <span class="Statement">if</span> (year !== (<span class="Statement">new</span> <span class="Type">Date</span>()).getFullYear()) <span class="Identifier">{</span>
+        monthYearString += <span class="Constant">` </span><span class="Special">${year}</span><span class="Constant">`</span>;
+    <span class="Identifier">}</span>
+    header.appendChild(<span class="Statement">document</span>.createTextNode(monthYearString));
+    monthDiv.appendChild(header);
+
+    <span class="Statement">const</span> option = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;option&quot;</span>);
+    option.setAttribute(<span class="Constant">&quot;value&quot;</span>, <span class="Constant">`</span><span class="Special">${month}</span><span class="Constant">-</span><span class="Special">${year}</span><span class="Constant">`</span>);
+    option.appendChild(<span class="Statement">document</span>.createTextNode(<span class="Constant">`</span><span class="Special">${month}</span><span class="Constant">-</span><span class="Special">${year}</span><span class="Constant">`</span>));
+    <span class="Statement">document</span>.getElementById(<span class="Constant">&quot;month-selector&quot;</span>).appendChild(option);
+
+    <span class="Statement">return</span> monthDiv;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> createPost(title, body, date) <span class="Identifier">{</span>
+    <span class="Statement">const</span> postElement = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;article&quot;</span>);
+    postElement.className = <span class="Constant">&quot;blog-article&quot;</span>;
+
+    <span class="Statement">const</span> timeElement = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;time&quot;</span>);
+    timeElement.appendChild(<span class="Statement">document</span>.createTextNode(date));
+    postElement.appendChild(timeElement);
+
+    <span class="Statement">const</span> titleElement = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;h2&quot;</span>);
+    titleElement.appendChild(<span class="Statement">document</span>.createTextNode(title));
+    postElement.appendChild(titleElement);
+
+    <span class="Statement">const</span> bodyElement = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;p&quot;</span>);
+    bodyElement.appendChild(<span class="Statement">document</span>.createTextNode(body));
+    postElement.appendChild(bodyElement);
+
+    <span class="Statement">return</span> postElement;
+<span class="Identifier">}</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

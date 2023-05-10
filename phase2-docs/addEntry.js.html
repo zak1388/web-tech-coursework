@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Documents/uni-notes/ECS417U/coursework/src/js/addEntry.js.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="javascript">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Statement { color: #ffff00; }
+.Special { color: #ffd7d7; }
+.Constant { color: #ff40ff; }
+.Identifier { color: #00ffff; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#signedIn&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;Welcome &quot;</span> + USERNAME);
+<span class="Identifier">}</span> <span class="Statement">else</span> <span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.hash === <span class="Constant">&quot;#alreadySignedIn&quot;</span>) <span class="Identifier">{</span>
+    showDialog(<span class="Constant">&quot;You're already signed in! (&quot;</span> + USERNAME + <span class="Constant">&quot;)&quot;</span>);
+<span class="Identifier">}</span>
+
+<span class="Statement">const</span> form = <span class="Statement">document</span>.querySelector(<span class="Constant">&quot;form&quot;</span>);
+<span class="Statement">const</span> FORM_TITLE = form.querySelector(<span class="Constant">&quot;input[name=</span><span class="Special">\&quot;</span><span class="Constant">title</span><span class="Special">\&quot;</span><span class="Constant">]&quot;</span>);
+<span class="Statement">const</span> FORM_BODY = form.querySelector(<span class="Constant">&quot;textarea[name=</span><span class="Special">\&quot;</span><span class="Constant">body</span><span class="Special">\&quot;</span><span class="Constant">]&quot;</span>);
+
+<span class="Statement">document</span>.querySelector(<span class="Constant">&quot;input[type=</span><span class="Special">\&quot;</span><span class="Constant">reset</span><span class="Special">\&quot;</span><span class="Constant">]&quot;</span>).addEventListener(<span class="Constant">&quot;click&quot;</span>, showConfirmClear);
+<span class="Statement">document</span>.querySelector(<span class="Constant">&quot;#confirm-clear-cancel&quot;</span>).addEventListener(<span class="Constant">&quot;click&quot;</span>, hideConfirmClear);
+<span class="Statement">document</span>.querySelector(<span class="Constant">&quot;#confirm-clear-accept&quot;</span>).addEventListener(<span class="Constant">&quot;click&quot;</span>, () =&gt; <span class="Identifier">{</span>
+        clear();
+        hideConfirmClear();
+<span class="Identifier">}</span>);
+<span class="Statement">document</span>.querySelector(<span class="Constant">&quot;input[type=</span><span class="Special">\&quot;</span><span class="Constant">submit</span><span class="Special">\&quot;</span><span class="Constant">]&quot;</span>).addEventListener(<span class="Constant">&quot;click&quot;</span>, (clickEvent) =&gt; <span class="Identifier">{</span>
+        <span class="Statement">if</span> (!isPostValid()) <span class="Identifier">{</span>
+            clickEvent.preventDefault();
+        <span class="Identifier">}</span>
+<span class="Identifier">}</span>);
+<span class="Statement">document</span>.getElementById(<span class="Constant">&quot;previewButton&quot;</span>).addEventListener(<span class="Constant">&quot;click&quot;</span>, (e) =&gt; <span class="Identifier">{</span>
+        <span class="Statement">if</span> (!isPostValid()) <span class="Identifier">{</span>
+            e.preventDefault();
+            <span class="Statement">return</span>;
+        <span class="Identifier">}</span>
+
+        <span class="Statement">document</span>.getElementsByTagName(<span class="Constant">&quot;form&quot;</span>)<span class="Identifier">[</span>0<span class="Identifier">]</span>.action = <span class="Constant">&quot;/viewBlog.php&quot;</span>;
+        <span class="Statement">document</span>.getElementsByTagName(<span class="Constant">&quot;form&quot;</span>)<span class="Identifier">[</span>0<span class="Identifier">]</span>.setAttribute(<span class="Constant">&quot;method&quot;</span>, <span class="Constant">&quot;GET&quot;</span>);
+<span class="Identifier">}</span>);
+
+<span class="Statement">if</span> (<span class="Statement">window</span>.<span class="Statement">location</span>.search.includes(<span class="Constant">&quot;body=&quot;</span>) || <span class="Statement">window</span>.<span class="Statement">location</span>.search.includes(<span class="Constant">&quot;title=&quot;</span>)) <span class="Identifier">{</span>
+    <span class="Statement">const</span> params = <span class="Statement">new</span> URLSearchParams(<span class="Statement">window</span>.<span class="Statement">location</span>.search);
+    <span class="Statement">const</span> title = params.get(<span class="Constant">&quot;title&quot;</span>);
+    <span class="Statement">const</span> body = params.get(<span class="Constant">&quot;body&quot;</span>);
+
+    FORM_TITLE.value = title;
+    FORM_BODY.value = body;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> isPostValid() <span class="Identifier">{</span>
+    <span class="Statement">return</span> !bodyTooLong() || !formFieldsEmpty();
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> bodyTooLong() <span class="Identifier">{</span>
+    <span class="Statement">if</span> (FORM_BODY.value.length &gt; 255) <span class="Identifier">{</span>
+        showDialog(<span class="Constant">&quot;The body of your post is too long (&quot;</span> + FORM_BODY.value.length + <span class="Constant">&quot;), it must be at most 255&quot;</span>);
+        <span class="Statement">return</span> <span class="Constant">true</span>;
+    <span class="Identifier">}</span> <span class="Statement">else</span>
+        <span class="Statement">return</span> <span class="Constant">false</span>;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> formFieldsEmpty() <span class="Identifier">{</span>
+    <span class="Identifier">let</span> anyFieldEmpty = <span class="Constant">false</span>;
+
+    anyFieldEmpty |= checkFieldEmpty(FORM_TITLE);
+    anyFieldEmpty |= checkFieldEmpty(FORM_BODY);
+
+    <span class="Statement">if</span> (anyFieldEmpty)
+        showDialog(<span class="Constant">&quot;You have one or more fields empty!&quot;</span>);
+
+    <span class="Statement">return</span> anyFieldEmpty;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> checkFieldEmpty(formField) <span class="Identifier">{</span>
+    <span class="Statement">if</span> (formField.value.trim() === <span class="Constant">&quot;&quot;</span>) <span class="Identifier">{</span>
+        emphasiseField(formField);
+        <span class="Statement">return</span> <span class="Constant">true</span>;
+    <span class="Identifier">}</span>
+    <span class="Statement">return</span> <span class="Constant">false</span>;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> emphasiseField(formField) <span class="Identifier">{</span>
+    formField.style.backgroundColor = <span class="Constant">&quot;red&quot;</span>;
+    formField.style.border = <span class="Constant">&quot;0.1em solid white&quot;</span>;
+    formField.addEventListener(<span class="Constant">&quot;focusin&quot;</span>, () =&gt; deemphasiseField(form_field));
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> deemphasiseField(formField) <span class="Identifier">{</span>
+    formField.style.backgroundColor = <span class="Constant">&quot;white&quot;</span>;
+    formField.style.border = <span class="Constant">&quot;&quot;</span>;
+    formField.removeEventListener(<span class="Constant">&quot;focusin&quot;</span>, () =&gt; deemphasiseField(form_field));
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> showConfirmClear(e) <span class="Identifier">{</span>
+    <span class="Statement">document</span>.querySelector(<span class="Constant">&quot;#confirm-clear-parent&quot;</span>).style.display = <span class="Constant">&quot;block&quot;</span>;
+    e.preventDefault();
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> hideConfirmClear(e) <span class="Identifier">{</span>
+    <span class="Statement">document</span>.querySelector(<span class="Constant">&quot;#confirm-clear-parent&quot;</span>).style.display = <span class="Constant">&quot;none&quot;</span>;
+<span class="Identifier">}</span>
+
+<span class="Identifier">function</span> clear() <span class="Identifier">{</span>
+    <span class="Statement">document</span>.querySelector(<span class="Constant">&quot;form&quot;</span>).reset();
+
+<span class="Identifier">}</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

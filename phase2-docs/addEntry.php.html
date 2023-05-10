@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Documents/uni-notes/ECS417U/coursework/src/addEntry.php.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="php">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Identifier { color: #00ffff; font-weight: bold; }
+.Statement { color: #ffff00; }
+.PreProc { color: #5fd7ff; }
+.Constant { color: #ff40ff; }
+.Title { color: #ffd7ff; }
+.Type { color: #87ffaf; }
+.Comment { color: #00ffff; }
+.Special { color: #ffd7d7; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">&lt;?php</span>
+    <span class="Identifier">session_start</span><span class="Special">()</span>;
+
+    <span class="Statement">if</span> <span class="Special">(</span><span class="Identifier">is_null</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">&quot;uid&quot;</span><span class="Special">]))</span> <span class="Special">{</span>
+        <span class="Identifier">header</span><span class="Special">(</span><span class="Constant">&quot;Location: &quot;</span><span class="Statement">.</span><span class="Statement">$</span><span class="Identifier">_SERVER</span><span class="Special">[</span><span class="Constant">&quot;SERVER_ADDR&quot;</span><span class="Special">]</span><span class="Statement">.</span><span class="Constant">&quot;/viewBlog.php#notSignedIn&quot;</span><span class="Special">)</span>;
+    <span class="Special">}</span> <span class="Statement">else</span> <span class="Statement">if</span> <span class="Special">(</span><span class="Statement">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">&quot;username&quot;</span><span class="Special">]</span> <span class="Statement">!==</span> <span class="Constant">&quot;zakariyyakadri@gmail.com&quot;</span><span class="Special">)</span> <span class="Special">{</span>
+        <span class="Identifier">header</span><span class="Special">(</span><span class="Constant">&quot;Location: &quot;</span><span class="Statement">.</span><span class="Statement">$</span><span class="Identifier">_SERVER</span><span class="Special">[</span><span class="Constant">&quot;SERVER_ADDR&quot;</span><span class="Special">]</span><span class="Statement">.</span><span class="Constant">&quot;/viewBlog.php#insufficientPermission&quot;</span><span class="Special">)</span>;
+    <span class="Special">}</span>
+<span class="Special">?&gt;</span>
+<span class="Comment">&lt;!DOCTYPE html&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">html</span><span class="Identifier"> </span><span class="Type">lang</span><span class="Identifier">=</span><span class="Constant">&quot;en&quot;</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">head</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">meta</span><span class="Identifier"> </span><span class="Type">charset</span><span class="Identifier">=</span><span class="Constant">UTF-8&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">meta</span><span class="Identifier"> </span><span class="Type">name</span><span class="Identifier">=</span><span class="Constant">&quot;viewport&quot;</span><span class="Identifier"> </span><span class="Type">content</span><span class="Identifier">=</span><span class="Constant">&quot;width=device-width,initial-scale=1&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">link</span><span class="Identifier"> </span><span class="Type">rel</span><span class="Identifier">=</span><span class="Constant">&quot;stylesheet&quot;</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;css/reset.css&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">link</span><span class="Identifier"> </span><span class="Type">rel</span><span class="Identifier">=</span><span class="Constant">&quot;stylesheet&quot;</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;css/common.css&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">link</span><span class="Identifier"> </span><span class="Type">rel</span><span class="Identifier">=</span><span class="Constant">&quot;stylesheet&quot;</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;css/common_mobile.css&quot;</span><span class="Identifier"> </span><span class="Type">media</span><span class="Identifier">=</span><span class="Constant">&quot;screen and (max-width: 768px)&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">link</span><span class="Identifier"> </span><span class="Type">rel</span><span class="Identifier">=</span><span class="Constant">&quot;stylesheet&quot;</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;css/addEntry.css&quot;</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="Special">        </span><span class="Statement">const</span><span class="Special"> USERNAME = </span><span class="Constant">&quot;</span><span class="Special">&lt;?php</span>
+                        <span class="Statement">if</span> <span class="Special">(</span><span class="Identifier">is_null</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">_SESSION</span><span class="Special">))</span>
+                            <span class="PreProc">echo</span> <span class="Constant">&quot;&quot;</span>;
+                        <span class="Statement">else</span>
+                            <span class="PreProc">echo</span> <span class="Statement">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">&quot;username&quot;</span><span class="Special">]</span>;
+                    <span class="Special">?&gt;</span><span class="Constant">&quot;</span><span class="Special">;</span>
+<span class="Special">    </span><span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier"> </span><span class="Type">src</span><span class="Identifier">=</span><span class="Constant">&quot;js/dialog.js&quot;</span><span class="Identifier"> </span><span class="Type">defer</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier"> </span><span class="Type">src</span><span class="Identifier">=</span><span class="Constant">&quot;js/addEntry.js&quot;</span><span class="Identifier"> </span><span class="Type">defer</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">head</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;</span><span class="Statement">header</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;</span><span class="Statement">h1</span><span class="Identifier">&gt;</span><span class="Title">Zakariyya Kadri</span><span class="Identifier">&lt;/</span><span class="Statement">h1</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>Curate a post<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">header</span><span class="Identifier">&gt;</span>
+
+    <span class="Special">&lt;?php</span> <span class="PreProc">include</span> <span class="Constant">'nav.php'</span>; <span class="Special">?&gt;</span>
+
+    <span class="Identifier">&lt;</span><span class="Statement">main</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;</span><span class="Statement">form</span><span class="Identifier"> </span><span class="Type">method</span><span class="Identifier">=</span><span class="Constant">&quot;POST&quot;</span><span class="Identifier"> </span><span class="Type">action</span><span class="Identifier">=</span><span class="Constant">&quot;./addPost.php&quot;</span><span class="Identifier">&gt;</span>
+            <span class="Identifier">&lt;</span><span class="Statement">fieldset</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">h1</span><span class="Identifier">&gt;</span><span class="Title">Add blog post</span><span class="Identifier">&lt;/</span><span class="Statement">h1</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+                    <span class="Identifier">&lt;</span><span class="Statement">input</span><span class="Identifier"> </span><span class="Type">type</span><span class="Identifier">=</span><span class="Constant">&quot;text&quot;</span><span class="Identifier"> </span><span class="Type">name</span><span class="Identifier">=</span><span class="Constant">&quot;title&quot;</span><span class="Identifier"> </span><span class="Type">placeholder</span><span class="Identifier">=</span><span class="Constant">&quot;Title&quot;</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;grow&quot;</span><span class="Identifier">&gt;</span>
+                    <span class="Identifier">&lt;</span><span class="Statement">textarea</span><span class="Identifier"> </span><span class="Type">name</span><span class="Identifier">=</span><span class="Constant">&quot;body&quot;</span><span class="Identifier"> </span><span class="Type">placeholder</span><span class="Identifier">=</span><span class="Constant">&quot;Enter your text here&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">textarea</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;flex&quot;</span><span class="Identifier">&gt;</span>
+                    <span class="Identifier">&lt;</span><span class="Statement">input</span><span class="Identifier"> </span><span class="Type">type</span><span class="Identifier">=</span><span class="Constant">&quot;submit&quot;</span><span class="Identifier"> </span><span class="Type">value</span><span class="Identifier">=</span><span class="Constant">&quot;Post&quot;</span><span class="Identifier">&gt;</span>
+                    <span class="Identifier">&lt;</span><span class="Statement">input</span><span class="Identifier"> </span><span class="Type">type</span><span class="Identifier">=</span><span class="Constant">&quot;reset&quot;</span><span class="Identifier"> </span><span class="Type">value</span><span class="Identifier">=</span><span class="Constant">&quot;Clear&quot;</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;flex&quot;</span><span class="Identifier">&gt;</span>
+                    <span class="Identifier">&lt;</span><span class="Statement">button</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;previewButton&quot;</span><span class="Identifier">&gt;</span>Preview?<span class="Identifier">&lt;/</span><span class="Statement">button</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+            <span class="Identifier">&lt;/</span><span class="Statement">fieldset</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;/</span><span class="Statement">form</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">main</span><span class="Identifier">&gt;</span>
+
+    <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;confirm-clear-parent&quot;</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;</span><span class="Statement">aside</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;confirm-clear&quot;</span><span class="Identifier">&gt;</span>
+            <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span> Are you sure you want to clear? <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+            <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;flex&quot;</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">button</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;confirm-clear-cancel&quot;</span><span class="Identifier">&gt;</span>Cancel<span class="Identifier">&lt;/</span><span class="Statement">button</span><span class="Identifier">&gt;</span>
+                <span class="Identifier">&lt;</span><span class="Statement">button</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;confirm-clear-accept&quot;</span><span class="Identifier">&gt;</span>Ok<span class="Identifier">&lt;/</span><span class="Statement">button</span><span class="Identifier">&gt;</span>
+            <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;/</span><span class="Statement">aside</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+    <span class="Special">&lt;?php</span> <span class="PreProc">include</span> <span class="Constant">'footer.php'</span>; <span class="Special">?&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;/</span><span class="Statement">html</span><span class="Identifier">&gt;</span>
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

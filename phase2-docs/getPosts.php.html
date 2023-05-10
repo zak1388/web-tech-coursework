@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Documents/uni-notes/ECS417U/coursework/src/getPosts.php.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="php">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Identifier { color: #00ffff; font-weight: bold; }
+.Statement { color: #ffff00; }
+.PreProc { color: #5fd7ff; }
+.Constant { color: #ff40ff; }
+.Type { color: #87ffaf; }
+.Comment { color: #00ffff; }
+.Special { color: #ffd7d7; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">&lt;?php</span>
+
+<span class="Statement">$</span><span class="Identifier">posts</span> <span class="Statement">=</span> <span class="Special">[]</span>;
+
+<span class="Statement">try</span> <span class="Special">{</span>
+    <span class="Statement">$</span><span class="Identifier">mysqli</span> <span class="Statement">=</span> <span class="PreProc">new</span> <span class="Identifier">mysqli</span><span class="Special">(</span><span class="Constant">&quot;127.0.0.1&quot;</span>, <span class="Constant">&quot;417coursework&quot;</span>, <span class="Constant">&quot;coursework&quot;</span>, <span class="Constant">&quot;courseworkdb&quot;</span><span class="Special">)</span>;
+
+    <span class="Statement">$</span><span class="Identifier">stmt</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">mysqli</span><span class="Type">-&gt;</span>prepare<span class="Special">(</span><span class="Constant">&quot;SELECT Title, Body, Date FROM ForumPosts&quot;</span><span class="Special">)</span>;
+    <span class="Statement">$</span><span class="Identifier">stmt</span><span class="Type">-&gt;</span>execute<span class="Special">()</span>;
+    <span class="Statement">$</span><span class="Identifier">results</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">stmt</span><span class="Type">-&gt;</span>get_result<span class="Special">()</span>;
+
+    <span class="Statement">if</span> <span class="Special">(</span><span class="Statement">!</span><span class="Statement">$</span><span class="Identifier">results</span><span class="Special">)</span> <span class="Special">{</span>
+        <span class="PreProc">echo</span> <span class="Constant">&quot;Issue with getting posts from sql db&quot;</span>;
+        <span class="Statement">die</span><span class="Special">()</span>;
+    <span class="Special">}</span>
+
+    <span class="Statement">$</span><span class="Identifier">posts</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">results</span><span class="Type">-&gt;</span>fetch_all<span class="Special">(</span>MYSQLI_ASSOC<span class="Special">)</span>;
+
+<span class="Special">}</span> <span class="Statement">catch</span> <span class="Special">(</span><span class="Identifier">Exception</span> <span class="Statement">$</span><span class="Identifier">exception</span><span class="Special">)</span> <span class="Special">{</span>
+    <span class="PreProc">echo</span> <span class="Statement">$</span><span class="Identifier">exception</span>;
+    <span class="Statement">die</span><span class="Special">()</span>;
+<span class="Special">}</span>
+
+<span class="PreProc">function</span> getTimestamp<span class="Special">(</span><span class="Statement">$</span><span class="Identifier">post</span><span class="Special">)</span> <span class="Special">{</span>
+    <span class="Statement">return</span> <span class="Special">(</span><span class="PreProc">new</span> <span class="Identifier">DateTime</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">post</span><span class="Special">[</span><span class="Constant">&quot;Date&quot;</span><span class="Special">]))</span><span class="Type">-&gt;</span>getTimestamp<span class="Special">()</span>;
+<span class="Special">}</span>
+
+<span class="PreProc">function</span> timestampGreaterThan<span class="Special">(</span><span class="Statement">$</span><span class="Identifier">post0</span>, <span class="Statement">$</span><span class="Identifier">post1</span><span class="Special">)</span> <span class="Special">{</span>
+    <span class="Statement">return</span> getTimestamp<span class="Special">(</span><span class="Statement">$</span><span class="Identifier">post0</span><span class="Special">)</span> <span class="Statement">&gt;</span> getTimestamp<span class="Special">(</span><span class="Statement">$</span><span class="Identifier">post1</span><span class="Special">)</span>;
+<span class="Special">}</span>
+
+
+<span class="Comment">// insertion sort posts</span>
+<span class="Statement">$</span><span class="Identifier">sorted_posts</span> <span class="Statement">=</span> <span class="Special">[]</span>;
+<span class="Statement">for</span> <span class="Special">(</span><span class="Statement">$</span><span class="Identifier">i</span> <span class="Statement">=</span> <span class="Constant">0</span>; <span class="Statement">$</span><span class="Identifier">i</span> <span class="Statement">&lt;</span> <span class="Identifier">count</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">posts</span><span class="Special">)</span>; <span class="Statement">$</span><span class="Identifier">i</span><span class="Statement">++</span><span class="Special">)</span> <span class="Special">{</span>
+    <span class="Statement">$</span><span class="Identifier">shift</span> <span class="Statement">=</span> <span class="Type">null</span>;
+    <span class="Statement">$</span><span class="Identifier">sorted_posts_count</span> <span class="Statement">=</span> <span class="Identifier">count</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">)</span>;
+    <span class="Statement">for</span> <span class="Special">(</span><span class="Statement">$</span><span class="Identifier">j</span> <span class="Statement">=</span> <span class="Constant">0</span>; <span class="Statement">$</span><span class="Identifier">j</span> <span class="Statement">&lt;</span> <span class="Statement">$</span><span class="Identifier">sorted_posts_count</span> <span class="Statement">+</span> <span class="Constant">1</span>; <span class="Statement">$</span><span class="Identifier">j</span><span class="Statement">++</span><span class="Special">)</span> <span class="Special">{</span>
+        <span class="Statement">if</span> <span class="Special">(</span><span class="Statement">!</span><span class="Identifier">is_null</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">shift</span><span class="Special">))</span> <span class="Special">{</span>
+            <span class="Statement">$</span><span class="Identifier">temp</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]</span>;
+            <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">shift</span>;
+            <span class="Statement">$</span><span class="Identifier">shift</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">temp</span>;
+        <span class="Special">}</span>
+        <span class="Statement">else</span> <span class="Statement">if</span> <span class="Special">(</span><span class="Identifier">count</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">)</span> <span class="Statement">==</span> <span class="Statement">$</span><span class="Identifier">j</span><span class="Special">)</span> <span class="Special">{</span>
+            <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">i</span><span class="Special">]</span>;
+        <span class="Special">}</span><span class="Statement">else</span> <span class="Statement">if</span> <span class="Special">(</span>timestampGreaterThan<span class="Special">(</span><span class="Statement">$</span><span class="Identifier">posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">i</span><span class="Special">]</span>, <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]))</span> <span class="Special">{</span>
+            <span class="Statement">$</span><span class="Identifier">shift</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]</span>;
+            <span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">j</span><span class="Special">]</span> <span class="Statement">=</span> <span class="Statement">$</span><span class="Identifier">posts</span><span class="Special">[</span><span class="Statement">$</span><span class="Identifier">i</span><span class="Special">]</span>;
+        <span class="Special">}</span>
+    <span class="Special">}</span>
+<span class="Special">}</span>
+
+<span class="Identifier">header</span><span class="Special">(</span><span class="Constant">&quot;Content-Type: application/json; charset=utf-8&quot;</span><span class="Special">)</span>;
+<span class="PreProc">echo</span> <span class="Identifier">json_encode</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">sorted_posts</span><span class="Special">)</span>;
+
+<span class="Special">?&gt;</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

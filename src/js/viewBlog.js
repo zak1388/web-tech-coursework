@@ -61,7 +61,7 @@ function doPreview() {
         });
         const post = createPost(title, body, dtf.format(date).replaceAll("/", "-").replace(",", ""));
 
-        const previewDiv = createMonthDiv("Preview", "post");
+        const previewDiv = createMonth("Preview", "post");
         previewDiv.appendChild(post);
 
 
@@ -120,7 +120,7 @@ function populatePosts() {
             if (date.getMonth() !== month || date.getFullYear() !== year) {
                 month = date.getMonth();
                 year = date.getFullYear();
-                monthDiv = createMonthDiv(month, year);
+                monthDiv = createMonth(month, year);
             }
 
             monthDiv.appendChild(createPost(post.Title, post.Body, post.Date));
@@ -131,14 +131,14 @@ function populatePosts() {
     });
 }
 
-function createMonthDiv(month, year) {
+function createMonth(month, year) {
     let monthDiv = document.getElementById(`${month}-${year}`);
 
     if (monthDiv !== null) {
         return monthDiv;
     }
 
-    monthDiv = document.createElement("div");
+    monthDiv = document.createElement("section");
     monthDiv.setAttribute("id", `${month}-${year}`);
     monthDiv.className = "month";
     document.getElementsByTagName("main")[0].appendChild(monthDiv);
